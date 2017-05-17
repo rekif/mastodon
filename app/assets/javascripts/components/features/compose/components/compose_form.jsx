@@ -119,7 +119,7 @@ class ComposeForm extends React.PureComponent {
 
   handleNhooSubmit () {
     this.autosuggestTextarea.textarea.style.height = "auto";
-    this.props.onChange("んほぉぉ！イッぐぅぅ！！");
+    this.props.onChange(this.props.text + "んほぉぉ！イッぐぅぅ！！");
     this.props.onSubmit();
     this.props.onChange('');
   }
@@ -185,7 +185,7 @@ class ComposeForm extends React.PureComponent {
             <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
-        <div className='compose-form__publish-button-wrapper'><Button text="んほぉぉ！イッぐぅぅ！！" value="んほぉぉ！イッぐぅぅ！！" onClick={this.handleNhooSubmit} disabled={disabled || (text.length !==0 && text.trim().length !== 0)} block /></div>
+        <div className='compose-form__publish-button-wrapper'><Button text="んほぉぉ！イッぐぅぅ！！" onClick={this.handleNhooSubmit} disabled={disabled || this.props.text.replace(/@[0-9a-zA-Z_]{1,30}\s{1}/g, "").length > 0} block /></div>
       </div>
     );
   }
