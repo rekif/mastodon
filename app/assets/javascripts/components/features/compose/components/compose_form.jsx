@@ -37,6 +37,7 @@ class ComposeForm extends React.PureComponent {
     this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
     this.handleEmojiPick = this.handleEmojiPick.bind(this);
     this.handleNhooSubmit = this.handleNhooSubmit.bind(this);
+    this.handleNhooComplement = this.handleNhooComplement.bind(this);
   }
 
   handleChange (e) {
@@ -119,9 +120,14 @@ class ComposeForm extends React.PureComponent {
 
   handleNhooSubmit () {
     this.autosuggestTextarea.textarea.style.height = "auto";
-    this.props.onChange(this.props.text + "んほぉぉ！イッぐぅぅ！！");
+    this.handleNhooComplement();
+    // this.props.onChange(this.props.text + "んほぉぉ！イッぐぅぅ！！");
     this.props.onSubmit();
     this.props.onChange('');
+  }
+
+  handleNhooComplement () {
+    this.props.onChange(this.props.text + "んほぉぉ！イッぐぅぅ！！");
   }
 
   render () {
@@ -185,7 +191,11 @@ class ComposeForm extends React.PureComponent {
             <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
-        <div className='compose-form__publish-button-wrapper'><Button text="んほぉぉ！イッぐぅぅ！！" onClick={this.handleNhooSubmit} disabled={disabled || this.props.text.replace(/@[^ ]*\s{1}/g, "").length > 0} block /></div>
+        <div className='compose-form__publish-button-wrapper'>
+          {(() => {
+            return this.props.text.replace(/@[^ ]*\s{1}/g, "").length > 0 ? <Button text="んほぉぉ！イッぐぅぅ！！を補完" onClick={this.handleNhooComplement} block /> : <Button text="んほぉぉ！イッぐぅぅ！！" onClick={this.handleNhooSubmit} block />;
+          })()}
+        </div>
       </div>
     );
   }
