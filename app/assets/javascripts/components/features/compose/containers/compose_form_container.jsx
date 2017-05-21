@@ -8,7 +8,8 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSpoilerText,
-  insertEmojiCompose
+  insertEmojiCompose,
+  insertNhooCompose
 } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
@@ -57,6 +58,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onPickEmoji (position, data) {
     dispatch(insertEmojiCompose(position, data));
+  },
+
+  onPickNhoo (position) {
+    dispatch(insertNhooCompose(position));
   },
 
 });

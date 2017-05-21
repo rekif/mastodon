@@ -21,7 +21,8 @@ import {
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LISTABILITY_CHANGE,
-  COMPOSE_EMOJI_INSERT
+  COMPOSE_EMOJI_INSERT,
+  COMPOSE_NHOO_INSERT
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -116,6 +117,16 @@ const insertEmoji = (state, position, emojiData) => {
 
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
+    map.set('focusDate', new Date());
+    map.set('idempotencyKey', uuid());
+  });
+};
+
+const insertNhoo = (state, position) => {
+  const nhoo = "んほぉぉ！イッぐぅぅ！！";
+
+  return state.withMutations(map => {
+    map.update('text', oldText => `${oldText.slice(0, position)}${nhoo}${oldText.slice(position)}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
   });
@@ -226,6 +237,8 @@ export default function compose(state = initialState, action) {
     }
   case COMPOSE_EMOJI_INSERT:
     return insertEmoji(state, action.position, action.emoji);
+  case COMPOSE_NHOO_INSERT:
+    return insertNhoo(state, action.position);
   default:
     return state;
   }

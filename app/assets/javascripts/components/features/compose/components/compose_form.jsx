@@ -37,6 +37,7 @@ class ComposeForm extends React.PureComponent {
     this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
     this.handleEmojiPick = this.handleEmojiPick.bind(this);
     this.handleNhooSubmit = this.handleNhooSubmit.bind(this);
+    this.handleNhooPick = this.handleNhooPick.bind(this);
     this.handleNhooComplement = this.handleNhooComplement.bind(this);
   }
 
@@ -121,13 +122,18 @@ class ComposeForm extends React.PureComponent {
   handleNhooSubmit () {
     this.autosuggestTextarea.textarea.style.height = "auto";
     this.handleNhooComplement();
-    // this.props.onChange(this.props.text + "んほぉぉ！イッぐぅぅ！！");
     this.props.onSubmit();
     this.props.onChange('');
   }
 
   handleNhooComplement () {
     this.props.onChange(this.props.text + "んほぉぉ！イッぐぅぅ！！");
+  }
+
+  handleNhooPick () {
+    const position     = this.autosuggestTextarea.textarea.selectionStart;
+    this._restoreCaret = position + 13;
+    this.props.onPickNhoo(position);
   }
 
   render () {
@@ -193,7 +199,7 @@ class ComposeForm extends React.PureComponent {
         </div>
         <div className='compose-form__publish-button-wrapper'>
           {(() => {
-            return this.props.text.replace(/@[^ ]*\s{1}/g, "").length > 0 ? <Button text="んほぉぉ！イッぐぅぅ！！を補完" onClick={this.handleNhooComplement} block /> : <Button text="んほぉぉ！イッぐぅぅ！！" onClick={this.handleNhooSubmit} block />;
+            return this.props.text.replace(/@[^ ]*\s{1}/g, "").length > 0 ? <Button text="んほぉぉ！イッぐぅぅ！！を補完" onClick={this.handleNhooPick} block /> : <Button text="んほぉぉ！イッぐぅぅ！！" onClick={this.handleNhooSubmit} block />;
           })()}
         </div>
       </div>
@@ -222,7 +228,8 @@ ComposeForm.propTypes = {
   onSuggestionSelected: PropTypes.func.isRequired,
   onChangeSpoilerText: PropTypes.func.isRequired,
   onPaste: PropTypes.func.isRequired,
-  onPickEmoji: PropTypes.func.isRequired
+  onPickEmoji: PropTypes.func.isRequired,
+  onPickNhoo: PropTypes.func.isRequired
 };
 
 export default injectIntl(ComposeForm);

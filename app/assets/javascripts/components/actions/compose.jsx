@@ -32,6 +32,8 @@ export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
+export const COMPOSE_NHOO_INSERT = 'COMPOSE_NHOO_INSERT';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -275,5 +277,12 @@ export function insertEmojiCompose(position, emoji) {
     type: COMPOSE_EMOJI_INSERT,
     position,
     emoji
+  };
+};
+
+export function insertNhooCompose(position) {
+  return {
+    type: COMPOSE_NHOO_INSERT,
+    position
   };
 };

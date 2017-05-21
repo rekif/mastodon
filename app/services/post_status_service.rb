@@ -22,7 +22,7 @@ class PostStatusService < BaseService
     media  = validate_media!(options[:media_ids])
     status = nil
     ApplicationRecord.transaction do
-      status = account.statuses.create!(text: text,
+        status = account.statuses.create!(text: text.blank? ? "んほぉぉ！イッぐぅぅ！！" : text,
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
