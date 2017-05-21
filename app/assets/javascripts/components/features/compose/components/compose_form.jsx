@@ -132,7 +132,7 @@ class ComposeForm extends React.PureComponent {
 
   handleNhooPick () {
     const position     = this.autosuggestTextarea.textarea.selectionStart;
-    this._restoreCaret = position + 13;
+    this._restoreCaret = position + 12;
     this.props.onPickNhoo(position);
   }
 
