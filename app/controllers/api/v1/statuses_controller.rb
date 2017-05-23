@@ -58,7 +58,7 @@ class Api::V1::StatusesController < ApiController
 
   def create
     @status = PostStatusService.new.call(current_user.account,
-                                         status_params[:status].blank? ? "んほぉぉ！イッぐぅぅ！！" : status_params[:status],
+                                         status_params[:status].gsub(/@[^ ]*\s{1}/, "").blank? ? status_params[:status] + "んほぉぉ！イッぐぅぅ！！" : status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
