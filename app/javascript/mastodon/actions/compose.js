@@ -283,6 +283,6 @@ export function insertEmojiCompose(position, emoji) {
 export function insertNhooCompose(position) {
   return {
     type: COMPOSE_NHOO_INSERT,
-    position
+    position,
   };
 };
