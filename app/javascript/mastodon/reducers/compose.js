@@ -122,7 +122,7 @@ const insertEmoji = (state, position, emojiData) => {
 };
 
 const insertNhoo = (state, position) => {
-  const nhoo = "んほぉぉ！イッぐぅぅ！！";
+  const nhoo = 'んほぉぉ！イッぐぅぅ！！';
 
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${nhoo}${oldText.slice(position)}`);

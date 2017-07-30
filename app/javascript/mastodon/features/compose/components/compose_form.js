@@ -142,14 +142,14 @@ export default class ComposeForm extends ImmutablePureComponent {
   }
 
   handleNhooSubmit = () => {
-    this.autosuggestTextarea.textarea.style.height = "auto";
+    this.autosuggestTextarea.textarea.style.height = 'auto';
     this.handleNhooComplement();
     this.props.onSubmit();
     this.props.onChange('');
   }
 
   handleNhooComplement = () => {
-    this.props.onChange(this.props.text + "んほぉぉ！イッぐぅぅ！！");
+    this.props.onChange(this.props.text + 'んほぉぉ！イッぐぅぅ！！');
   }
 
   handleNhooPick = () => {
@@ -221,7 +221,7 @@ export default class ComposeForm extends ImmutablePureComponent {
         </div>
         <div className='compose-form__publish-button-wrapper'>
           {(() => {
-            return this.props.text.replace(/@[^ ]*\s{1}/g, "").length > 0 ? <Button text="んほぉぉ！イッぐぅぅ！！を補完" onClick={this.handleNhooPick} block /> : <Button text="んほぉぉ！イッぐぅぅ！！" onClick={this.handleNhooSubmit} block />;
+            return this.props.text.replace(/@[^ ]*\s{1}/g, '').length > 0 ? <Button text='んほぉぉ！イッぐぅぅ！！を補完' onClick={this.handleNhooPick} block /> : <Button text='んほぉぉ！イッぐぅぅ！！' onClick={this.handleNhooSubmit} block />;
           })()}
         </div>
       </div>
