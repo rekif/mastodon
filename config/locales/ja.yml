@@ -16,12 +16,12 @@ ja:
     features:
       humane_approach_body: 他の SNS の失敗から学び、Shimaidon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指していることはありません。むしろ失敗しています。
       humane_approach_title: より思いやりのあるイキティビティ設計
-      not_a_product_body: Shimaidon は営利的な SNS ではありません。イキボタンや、イッた回数の収集・解析はありますが、またユーザーの囲い込みはありません。
+      not_a_product_body: Shimaidon は営利的な SNS ではありません。イキボタンや、イッた回数の収集・解析はありますが、ユーザーの囲い込みはありません。
       not_a_product_title: んほぉぉ！イッぐぅぅ！！
       real_conversation_body: 好きなようにイケる500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに絶頂へ達することができます。
       real_conversation_title: 本当のコミュニケーションのために
       within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とイクことができます。（本当です）
-      within_reach_title: いつでも身近に
+      within_reach_title: いつでもイケる
     find_another_instance: 他のインスタンスを探す
     generic_description: "%{domain} は、Mastodon インスタンスの一つです。"
     hosted_on: Mastodon hosted on %{domain}
@@ -273,7 +273,7 @@ ja:
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
     '429': リクエストの制限に達しました。
-    noscript: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けのMastodonネイティブアプリを探すことができます。
+    noscript: Shimaidonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けのMastodonネイティブアプリを探すことができます。
   exports:
     blocks: ブロック
     csv: CSV
@@ -385,7 +385,7 @@ ja:
       weibo: Weibo
     current_session: 現在のセッション
     description: "%{browser} on %{platform}"
-    explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
+    explanation: あなたのShimaidonアカウントに現在ログインしているウェブブラウザの一覧です。
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -405,7 +405,7 @@ ja:
     title: セッション
   settings:
     authorized_apps: 認証済みアプリ
-    back: Mastodon に戻る
+    back: Shimaidon に戻る
     delete: アカウントの削除
     edit_profile: プロフィールを編集
     export: データのエクスポート
