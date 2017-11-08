@@ -23,7 +23,7 @@ class PostStatusService < BaseService
     status = nil
 
     ApplicationRecord.transaction do
-        status = account.statuses.create!(text: text.blank? ? "んほぉぉ！イッぐぅぅ！！" : text,
+      status = account.statuses.create!(text: text.blank? ? "んほぉぉ！イッぐぅぅ！！" : text,
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
