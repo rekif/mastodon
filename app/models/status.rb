@@ -5,7 +5,6 @@
 #
 #  id                     :integer          not null, primary key
 #  uri                    :string
-#  account_id             :integer          not null
 #  text                   :text             default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -14,8 +13,6 @@
 #  url                    :string
 #  sensitive              :boolean          default(FALSE), not null
 #  visibility             :integer          default("public"), not null
-#  in_reply_to_account_id :integer
-#  application_id         :integer
 #  spoiler_text           :text             default(""), not null
 #  reply                  :boolean          default(FALSE), not null
 #  favourites_count       :integer          default(0), not null
@@ -23,6 +20,9 @@
 #  language               :string
 #  conversation_id        :integer
 #  local                  :boolean
+#  account_id             :integer          not null
+#  application_id         :integer
+#  in_reply_to_account_id :integer
 #
 
 class Status < ApplicationRecord
@@ -33,14 +33,14 @@ class Status < ApplicationRecord
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
-  belongs_to :application, class_name: 'Doorkeeper::Application'
+  belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
-  belongs_to :account, inverse_of: :statuses, counter_cache: true, required: true
-  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
-  belongs_to :conversation
+  belongs_to :account, inverse_of: :statuses, counter_cache: true
+  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account', optional: true
+  belongs_to :conversation, optional: true
 
-  belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
-  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count
+  belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
+  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count, optional: true
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
@@ -135,6 +135,7 @@ class Status < ApplicationRecord
   end
 
   after_create_commit :store_uri, if: :local?
+  after_create_commit :update_statistics, if: :local?
 
   around_create Mastodon::Snowflake::Callbacks
 
@@ -175,7 +176,7 @@ class Status < ApplicationRecord
     end
 
     def reblogs_map(status_ids, account_id)
-      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).reorder(nil).map { |s| [s.reblog_of_id, true] }.to_h
     end
 
     def mutes_map(conversation_ids, account_id)
@@ -278,6 +279,7 @@ class Status < ApplicationRecord
 
   def set_visibility
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
+    self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
   end
 
@@ -306,5 +308,10 @@ class Status < ApplicationRecord
 
   def set_local
     self.local = account.local?
+  end
+
+  def update_statistics
+    return unless public_visibility? || unlisted_visibility?
+    ActivityTracker.increment('activity:statuses:local')
   end
 end

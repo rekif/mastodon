@@ -3,18 +3,18 @@
 #
 # Table name: blocks
 #
+#  id                :integer          not null, primary key
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  account_id        :integer          not null
-#  id                :integer          not null, primary key
 #  target_account_id :integer          not null
 #
 
 class Block < ApplicationRecord
   include Paginable
 
-  belongs_to :account, required: true
-  belongs_to :target_account, class_name: 'Account', required: true
+  belongs_to :account
+  belongs_to :target_account, class_name: 'Account'
 
   validates :account_id, uniqueness: { scope: :target_account_id }
 

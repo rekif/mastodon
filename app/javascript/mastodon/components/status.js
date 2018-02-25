@@ -36,9 +36,6 @@ export default class Status extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
-    me: PropTypes.string,
-    boostModal: PropTypes.bool,
-    autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     onMoveUp: PropTypes.func,
@@ -54,9 +51,6 @@ export default class Status extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'account',
-    'me',
-    'boostModal',
-    'autoPlayGif',
     'muted',
     'hidden',
   ]
@@ -168,7 +162,7 @@ export default class Status extends ImmutablePureComponent {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
+          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
         </div>
       );
 
@@ -184,20 +178,22 @@ export default class Status extends ImmutablePureComponent {
 
         media = (
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
-            {Component => <Component
-              preview={video.get('preview_url')}
-              src={video.get('url')}
-              width={239}
-              height={110}
-              sensitive={status.get('sensitive')}
-              onOpenVideo={this.handleOpenVideo}
-            />}
+            {Component => (
+              <Component
+                preview={video.get('preview_url')}
+                src={video.get('url')}
+                width={239}
+                height={110}
+                sensitive={status.get('sensitive')}
+                onOpenVideo={this.handleOpenVideo}
+              />
+            )}
           </Bundle>
         );
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />}
+            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
           </Bundle>
         );
       }

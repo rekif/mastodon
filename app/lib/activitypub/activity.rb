@@ -3,7 +3,7 @@
 class ActivityPub::Activity
   include JsonLdHelper
 
-  def initialize(json, account, options = {})
+  def initialize(json, account, **options)
     @json    = json
     @account = account
     @object  = @json['object']
@@ -15,7 +15,7 @@ class ActivityPub::Activity
   end
 
   class << self
-    def factory(json, account, options = {})
+    def factory(json, account, **options)
       @json = json
       klass&.new(json, account, options)
     end
@@ -69,12 +69,13 @@ class ActivityPub::Activity
   def distribute(status)
     crawl_links(status)
 
+    notify_about_reblog(status) if reblog_of_local_account?(status)
+    notify_about_mentions(status)
+
     # Only continue if the status is supposed to have
     # arrived in real-time
     return unless @options[:override_timestamps]
 
-    notify_about_reblog(status) if reblog_of_local_account?(status)
-    notify_about_mentions(status)
     distribute_to_followers(status)
   end
 

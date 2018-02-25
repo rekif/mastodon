@@ -10,12 +10,12 @@
 #  file_file_size    :integer
 #  file_updated_at   :datetime
 #  remote_url        :string           default(""), not null
-#  account_id        :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  shortcode         :string
 #  type              :integer          default("image"), not null
 #  file_meta         :json
+#  account_id        :integer
 #  description       :text
 #
 
@@ -45,8 +45,8 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  belongs_to :account, inverse_of: :media_attachments
-  belongs_to :status,  inverse_of: :media_attachments
+  belongs_to :account, inverse_of: :media_attachments, optional: true
+  belongs_to :status,  inverse_of: :media_attachments, optional: true
 
   has_attached_file :file,
                     styles: ->(f) { file_styles f },

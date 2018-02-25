@@ -3,17 +3,17 @@
 #
 # Table name: account_domain_blocks
 #
+#  id         :integer          not null, primary key
 #  domain     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  account_id :integer
-#  id         :integer          not null, primary key
 #
 
 class AccountDomainBlock < ApplicationRecord
   include Paginable
 
-  belongs_to :account, required: true
+  belongs_to :account
   validates :domain, presence: true, uniqueness: { scope: :account_id }
 
   after_create  :remove_blocking_cache
