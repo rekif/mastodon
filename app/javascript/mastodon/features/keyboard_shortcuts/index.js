@@ -73,6 +73,10 @@ export default class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.toot' defaultMessage='to start a brand new toot' /></td>
               </tr>
               <tr>
+                <td><kbd>alt</kbd>+<kbd>i</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.nhoo' defaultMessage='to nhoo' /></td>
+              </tr>
+              <tr>
                 <td><kbd>backspace</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.back' defaultMessage='to navigate back' /></td>
               </tr>

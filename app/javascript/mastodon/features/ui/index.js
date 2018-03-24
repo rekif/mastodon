@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
-import { uploadCompose, resetCompose } from '../../actions/compose';
+import { uploadCompose, resetCompose, insertNhooCompose, submitCompose } from '../../actions/compose';
 import { refreshHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import { clearHeight } from '../../actions/height_cache';
@@ -62,6 +62,7 @@ const mapStateToProps = state => ({
 const keyMap = {
   help: '?',
   new: 'n',
+  nhoo: 'option+i',
   search: 's',
   forceNew: 'option+n',
   focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
@@ -317,6 +318,13 @@ export default class UI extends React.PureComponent {
     }
   }
 
+  handleHotkeyNhoo = e => {
+    this.handleHotkeyNew(e);
+    this.props.dispatch(resetCompose());
+    this.props.dispatch(insertNhooCompose());
+    this.props.dispatch(submitCompose());
+  }
+
   handleHotkeySearch = e => {
     e.preventDefault();
 
@@ -412,6 +420,7 @@ export default class UI extends React.PureComponent {
     const handlers = {
       help: this.handleHotkeyToggleHelp,
       new: this.handleHotkeyNew,
+      nhoo: this.handleHotkeyNhoo,
       search: this.handleHotkeySearch,
       forceNew: this.handleHotkeyForceNew,
       focusColumn: this.handleHotkeyFocusColumn,

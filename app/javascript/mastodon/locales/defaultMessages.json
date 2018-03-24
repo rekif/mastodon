@@ -1071,6 +1071,10 @@
         "id": "keyboard_shortcuts.toot"
       },
       {
+        "defaultMessage": "to nhoo",
+        "id": "keyboard_shortcuts.nhoo"
+      },
+      {
         "defaultMessage": "to navigate back",
         "id": "keyboard_shortcuts.back"
       },
