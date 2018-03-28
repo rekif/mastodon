@@ -11,6 +11,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Ikitivity",
+        "id": "account.ikitivity"
+      },
+      {
         "defaultMessage": "Follow",
         "id": "account.follow"
       },

@@ -37,6 +37,7 @@ ja:
     follow: フォロー
     followers: フォロワー
     following: フォロー中
+    ikitivity: イッた回数
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     nothing_here: 何もありません！
@@ -77,6 +78,7 @@ ja:
       followers: フォロワー数
       followers_url: Followers URL
       follows: フォロー数
+      ikitivity: イッた回数
       inbox_url: Inbox URL
       ip: IP
       location:

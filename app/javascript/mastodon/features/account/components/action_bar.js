@@ -51,6 +51,7 @@ export default class ActionBar extends React.PureComponent {
 
     let menu = [];
     let extraInfo = '';
+    let shimaidonExtraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
 
@@ -109,6 +110,13 @@ export default class ActionBar extends React.PureComponent {
       } else {
         menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
       }
+    } else {
+      shimaidonExtraInfo = (
+        <div className='account__action-bar__tab'>
+          <span><FormattedMessage id='account.ikitivity' defaultMessage='Ikitivity' /></span>
+          <strong><FormattedNumber value={account.get('ikitivity_count')} /></strong>
+        </div>
+      )
     }
 
     return (
@@ -135,6 +143,8 @@ export default class ActionBar extends React.PureComponent {
               <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
               <strong><FormattedNumber value={account.get('followers_count')} /></strong>
             </Link>
+
+            {shimaidonExtraInfo}
           </div>
         </div>
       </div>

@@ -57,7 +57,7 @@ const PageTwo = ({ myAccount }) => (
         <NavigationBar account={myAccount} />
 
         <ComposeForm
-          text='Awoo! #introductions'
+          text='んほぉぉ！イッぐぅぅ！！ #introductions'
           suggestions={ImmutableList()}
           mentionedDomains={[]}
           spoiler={false}
