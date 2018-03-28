@@ -116,7 +116,7 @@ export default class ActionBar extends React.PureComponent {
           <span><FormattedMessage id='account.ikitivity' defaultMessage='Ikitivity' /></span>
           <strong><FormattedNumber value={account.get('ikitivity_count')} /></strong>
         </div>
-      )
+      );
     }
 
     return (
