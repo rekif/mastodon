@@ -148,6 +148,10 @@ class Account < ApplicationRecord
     local? ? username : "#{username}@#{domain}"
   end
 
+  def ikitivity_count
+    Status.where(account_id: id).where('text like(?)', '%んほぉぉ！イッぐぅぅ！！%').count
+  end
+
   def local_username_and_domain
     "#{username}@#{Rails.configuration.x.local_domain}"
   end

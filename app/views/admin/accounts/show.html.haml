@@ -65,6 +65,10 @@
       %tr
         %th= t('admin.accounts.followers')
         %td= @account.followers_count
+      - if @account.local?
+        %tr
+          %th= t('admin.accounts.ikitivity')
+          %td= @account.ikitivity_count
       %tr
         %th= t('admin.accounts.statuses')
         %td= link_to @account.statuses_count, admin_account_statuses_path(@account.id)
