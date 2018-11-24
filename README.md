@@ -3,12 +3,13 @@
 
 ## Shimaidon
 
-[![GitHub release](https://img.shields.io/github/release/rekif/mastodon.svg)][releases]
-[![Build Status](http://img.shields.io/travis/rekif/mastodon.svg)][travis]
-[![Code Climate](https://img.shields.io/codeclimate/github/rekif/mastodon.svg)][code_climate]
+[![GitHub release](https://img.shields.io/github/release/rekif/mastodon.svg)][shimaidon_releases]
+[![Build Status](https://img.shields.io/circleci/project/github/rekif/mastodon.svg)][shimaidon_circleci]
+[![Code Climate](https://img.shields.io/codeclimate/github/rekif/mastodon.svg)][shimaidon_code_climate]
 
-[travis]: https://travis-ci.org/rekif/mastodon
-[code_climate]: https://codeclimate.com/github/rekif/mastodon
+[shimaidon_releases]: https://github.com/rekif/mastodon/releases
+[shimaidon_circleci]: https://circleci.com/gh/rekif/mastodon
+[shimaidon_code_climate]: https://codeclimate.com/github/rekif/mastodon
 
 ## Mainline
 
