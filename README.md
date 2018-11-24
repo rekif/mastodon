@@ -5,7 +5,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/rekif/mastodon.svg)][shimaidon_releases]
 [![Build Status](https://img.shields.io/circleci/project/github/rekif/mastodon.svg)][shimaidon_circleci]
-[![Code Climate](https://img.shields.io/codeclimate/github/rekif/mastodon.svg)][shimaidon_code_climate]
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/rekif/mastodon.svg)][shimaidon_code_climate]
 
 [shimaidon_releases]: https://github.com/rekif/mastodon/releases
 [shimaidon_circleci]: https://circleci.com/gh/rekif/mastodon
